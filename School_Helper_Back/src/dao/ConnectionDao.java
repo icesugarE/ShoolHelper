@@ -63,30 +63,6 @@ public class ConnectionDao {
 		
 		return connectionList;
 	}
-	public List<ConnectionBean> selectConnectiontwo(int rewardId) {
-		List<ConnectionBean> connectionList = new ArrayList<ConnectionBean>();
-		Connection conn = DataBase.getConnection();
-		String sql = "select * from connection where reward_id=?";
-		ResultSet rs = null;
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1,rewardId);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				ConnectionBean con = new ConnectionBean();
-				con.setConnectionId(rs.getInt("connection_id"));
-				con.setRecriverId(rs.getInt("receiver_id"));
-				con.setPosterId(rs.getInt("poster_id"));
-				con.setRewardId(rs.getInt("reward_id"));
-				connectionList.add(con);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return connectionList;
-	}
 	public List<ConnectionBean> selectConnectionone(int posterId) {
 		List<ConnectionBean> connectionListone = new ArrayList<ConnectionBean>();
 		Connection conn = DataBase.getConnection();
@@ -110,22 +86,5 @@ public class ConnectionDao {
 		}
 		
 		return connectionListone;
-	}
-	public void delete(int rewardId) {
-		Connection conn=DataBase.getConnection();
-		PreparedStatement pstmt=null;
-		String sql="delete from connection where reward_id=?";
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, rewardId);
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		finally {
-			DataBase.close(pstmt);
-			DataBase.close(conn);
-		}
 	}
 }

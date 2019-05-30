@@ -1,7 +1,5 @@
 package bean;
 
-import java.sql.Time;
-
 public class RewardBean {
 	/**
 	 * @author 尚一飞
