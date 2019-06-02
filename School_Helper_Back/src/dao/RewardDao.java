@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.RewardBean;
-import bean.UserBean;
 
 public class RewardDao {
 	/**

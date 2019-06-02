@@ -6,10 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import bean.ConnectionBean;
-import bean.RewardBean;
-import bean.UserBean;
 /*
  * 功能：ConnectionDao
  * 开发人：杨旭辉
