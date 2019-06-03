@@ -181,7 +181,7 @@ public class User {
 		this.school = school;
 	}
 
-	@OneToMany(mappedBy="user", targetEntity=Reward.class,
+	@OneToMany(mappedBy="poster", targetEntity=Reward.class,
 			cascade=CascadeType.ALL)
 	public List<Reward> getPosterList() {
 		return posterList;
@@ -191,7 +191,7 @@ public class User {
 		this.posterList = posterList;
 	}
 
-	@OneToMany(mappedBy="user", targetEntity=Reward.class,
+	@OneToMany(mappedBy="receiver", targetEntity=Reward.class,
 			cascade=CascadeType.ALL)
 	public List<Reward> getReceiverList() {
 		return receiverList;
