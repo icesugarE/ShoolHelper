@@ -347,6 +347,33 @@ public class UserController {
 	public void loginOne(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		String phone=request.getParameter("phone");
+		String password=request.getParameter("password");
+		PrintWriter writer = response.getWriter();
+		System.out.println(phone);
+		System.out.println(password);
+		JSONObject js = new JSONObject();
+		JSONArray array = new JSONArray();
+		List<User> userList =userservice.getAllUser();
+		User user=new User();
+		for(User thisUser:userList) {
+			if(thisUser.getUserPhone().equals(phone)) {
+				user=thisUser;
+			}
+		}
+		js.put("name", user.getUserName());
+		js.put("realname", user.getUserRealname());
+		js.put("phone", user.getUserPhone());
+		array.put(js);
+		writer.println(array.toString());
+		writer.flush();
+		writer.close();
+	}
+	@RequestMapping("/logintwo")
+	@ResponseBody
+	public void loginTwo(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		String name=request.getParameter("user");
 		PrintWriter writer = response.getWriter();
 		System.out.println(name);

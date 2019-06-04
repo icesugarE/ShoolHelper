@@ -40,6 +40,7 @@ public class School {
 	}
 	
 	@Id
+	@Column(name="school_id")
 	@GeneratedValue(generator="my_gen")
 	@GenericGenerator(name="my_gen",strategy="native")
 	public int getSchoolId() {
