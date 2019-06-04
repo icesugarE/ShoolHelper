@@ -107,6 +107,7 @@ public class Reward {
 	}
 
 	@Id
+	@Column(name="reward_id")
 	@GeneratedValue(generator="my_gen")
 	@GenericGenerator(name="my_gen",strategy="native")
 	public int getRewardId() {

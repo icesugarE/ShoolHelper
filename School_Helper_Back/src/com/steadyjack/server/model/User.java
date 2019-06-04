@@ -162,6 +162,7 @@ public class User {
 	}
 	
 	@Id
+	@Column(name="user_id")
 	@GeneratedValue(generator="my_gen")
 	@GenericGenerator(name="my_gen",strategy="native")
 	public int getUserId() {
