@@ -13,4 +13,5 @@ public interface UserDao {
 	public List<User> getAllUser();
 	
 	public User checkUser(int userId);
+	public User checkUser(User user);
 }

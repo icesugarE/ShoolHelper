@@ -29,4 +29,8 @@ public class UserServiceImpl implements UserService{
 	public User checkUser(int userId) {
 		return userDao.checkUser(userId);
 	}
+
+	public User checkUser(User user) {
+		return userDao.checkUser(user);
+	}
 }
