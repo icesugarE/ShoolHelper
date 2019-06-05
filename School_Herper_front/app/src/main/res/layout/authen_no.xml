@@ -14,7 +14,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical">
 
-<FrameLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -36,9 +36,9 @@ android:orientation="vertical">
         android:text="校园认证"
         android:textSize="26dp"
         android:textColor="#FFFFFF"/>
-</FrameLayout>
+</RelativeLayout>
 
-<LinearLayout
+<RelativeLayout
     android:layout_width="350dp"
     android:layout_height="180dp"
     android:orientation="horizontal"
@@ -53,7 +53,7 @@ android:orientation="vertical">
         android:textColor="#FFFFFF"
         android:layout_marginTop="23dp"
         android:layout_marginLeft="23dp"/>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="75dp"
         android:layout_height="35dp"
         android:background="@drawable/back_color1"
@@ -66,10 +66,10 @@ android:orientation="vertical">
             android:text="未认证"
             android:textSize="18dp"
             android:textColor="#FFFFFF"/>
-    </LinearLayout>
-</LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
 
-<LinearLayout
+<RelativeLayout
     android:id="@+id/go_authenget"
     android:layout_alignParentBottom="true"
     android:layout_width="match_parent"
@@ -84,5 +84,5 @@ android:orientation="vertical">
         android:textStyle="bold"
         android:textSize="24dp"
         android:textColor="#FFFFFF"/>
-</LinearLayout>
+</RelativeLayout>
 </FrameLayout>

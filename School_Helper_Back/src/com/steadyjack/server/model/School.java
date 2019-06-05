@@ -30,12 +30,17 @@ public class School {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public School(int id,String name) {
+		this.schoolId=id;
+		this.schoolName=name;
+	}
 	public School(String name) {
 		super();
 		this.schoolName = name;
 	}
 	
 	@Id
+	@Column(name="school_id")
 	@GeneratedValue(generator="my_gen")
 	@GenericGenerator(name="my_gen",strategy="native")
 	public int getSchoolId() {

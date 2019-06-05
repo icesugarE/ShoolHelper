@@ -30,6 +30,7 @@ public class Reward {
 	private String rewardImage;
 	private User poster;
 	private User receiver;
+	private int posterId;
 	
 	public Reward() {
 		super();
@@ -65,7 +66,18 @@ public class Reward {
 		this.rewardState = rewardState;
 		this.rewardImage = rewardImage;
 	}
-
+//	public Reward(int posterId, String rewardContent, String rewardTitle, double rewardMoney, String rewardTime,
+//			String rewardDeadline, String rewardState, String rewardImage) {
+//		super();
+//		this.posterId = posterId;
+//		this.rewardContent = rewardContent;
+//		this.rewardTitle = rewardTitle;
+//		this.rewardMoney = rewardMoney;
+//		this.rewardTime = rewardTime;
+//		this.rewardDeadline = rewardDeadline;
+//		this.rewardState = rewardState;
+//		this.rewardImage = rewardImage;
+//	}
 
 	public Reward(User poster, String rewardContent, String rewardTitle, double rewardMoney, String rewardTime,
 			String rewardDeadline, String rewardState, String rewardImage) {
@@ -95,6 +107,7 @@ public class Reward {
 	}
 
 	@Id
+	@Column(name="reward_id")
 	@GeneratedValue(generator="my_gen")
 	@GenericGenerator(name="my_gen",strategy="native")
 	public int getRewardId() {
