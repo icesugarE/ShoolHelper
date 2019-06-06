@@ -66,18 +66,25 @@ public class Reward {
 		this.rewardState = rewardState;
 		this.rewardImage = rewardImage;
 	}
-//	public Reward(int posterId, String rewardContent, String rewardTitle, double rewardMoney, String rewardTime,
-//			String rewardDeadline, String rewardState, String rewardImage) {
-//		super();
-//		this.posterId = posterId;
-//		this.rewardContent = rewardContent;
-//		this.rewardTitle = rewardTitle;
-//		this.rewardMoney = rewardMoney;
-//		this.rewardTime = rewardTime;
-//		this.rewardDeadline = rewardDeadline;
-//		this.rewardState = rewardState;
-//		this.rewardImage = rewardImage;
-//	}
+	public Reward(int posterId, String rewardContent, String rewardTitle, double rewardMoney, String rewardState) {
+		super();
+		this.posterId = posterId;
+		this.rewardContent = rewardContent;
+		this.rewardTitle = rewardTitle;
+		this.rewardMoney = rewardMoney;
+		this.rewardState = rewardState;
+	}
+	public Reward(int posterId, String rewardContent, String rewardTitle, double rewardMoney, String rewardTime,
+			String rewardDeadline, String rewardState) {
+		super();
+		this.posterId = posterId;
+		this.rewardContent = rewardContent;
+		this.rewardTitle = rewardTitle;
+		this.rewardMoney = rewardMoney;
+		this.rewardTime = rewardTime;
+		this.rewardDeadline = rewardDeadline;
+		this.rewardState = rewardState;
+	}
 
 	public Reward(User poster, String rewardContent, String rewardTitle, double rewardMoney, String rewardTime,
 			String rewardDeadline, String rewardState, String rewardImage) {
@@ -194,6 +201,5 @@ public class Reward {
 	public void setReceiver(User receiver) {
 		this.receiver = receiver;
 	}
-	
 	
 }

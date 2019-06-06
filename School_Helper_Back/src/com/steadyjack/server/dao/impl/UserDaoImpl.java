@@ -17,7 +17,7 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao{
 	
 	public int reviseUser(User user) {
 		//开始更新
-		Transaction tx = getSession().beginTransaction();
+//		Transaction tx = getSession().beginTransaction();
 		String hql = "update User set userName =?,userPassword=?,userPhone=?,userMoney=?,userTookCount=?,userPublishCount=?,userIdentification=?,userSignature=?,userRealname=?,userSex=? where userId = ?";
 		Query query = getSession().createQuery(hql);
 		query.setParameter(0,user.getUserName());
@@ -32,10 +32,16 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao{
 		query.setParameter(9,user.getUserSex());
 		query.setParameter(10,user.getUserId());
 		int ret = query.executeUpdate();
-		tx.commit();
+//		tx.commit();
 		return ret;
 	}	
-	
+	public void money(User user) {
+		String hql="update User set userMoney=? where userId=?";
+		Query query = getSession().createQuery(hql);
+		query.setParameter(0,user.getUserMoney());
+		query.setParameter(1,user.getUserId());
+		query.executeUpdate();
+	}
 	@SuppressWarnings("unchecked")
 	public List<User> getAllUser(){
 		//开始查询
@@ -55,13 +61,13 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao{
 		//返回查询值
 		return user;		
 	}
-	public User checkUser(User user) {
+	public User checkPhone(String phone) {
 		//开始查询
-		String hql = "from User where userId = ?";
+		String hql = "from User where userPhone = ?";
 		Query query = getSession().createQuery(hql);
-		query.setParameter(0,user.getUserId());
-		User user1 = (User)query.uniqueResult();
+		query.setParameter(0,phone);
+		User user = (User)query.uniqueResult();
 		//返回查询值
-		return user1;		
+		return user;		
 	}
 }

@@ -18,10 +18,13 @@ public class UserServiceImpl implements UserService{
 		userDao.setUser(user);
 	}
 	
+	public void money(User user) {
+		userDao.money(user);
+	}
 	public int reviseUser(User user) {
 		return userDao.reviseUser(user);
 	}
-	
+
 	public List<User> getAllUser(){
 		return userDao.getAllUser();
 	}
@@ -29,8 +32,7 @@ public class UserServiceImpl implements UserService{
 	public User checkUser(int userId) {
 		return userDao.checkUser(userId);
 	}
-
-	public User checkUser(User user) {
-		return userDao.checkUser(user);
+	public User checkPhone(String phone) {
+		return userDao.checkPhone(phone);
 	}
 }

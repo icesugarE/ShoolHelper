@@ -22,29 +22,28 @@ import com.steadyjack.server.service.RewardService;
 import com.steadyjack.server.service.UserService;
 
 
+
 @Controller
 public class RewardController {
 
 	@Autowired
 	private RewardService rewardservice;
+	@Autowired
 	private UserService userservice;
-	private ConnectionService connectionservice;
-	
 	
 	@RequestMapping("/boraditem")
 	@ResponseBody
 	public void boardItem(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		PrintWriter writer = response.getWriter();
 		List<Reward> rewardList = rewardservice.selectBoardReward();
 		JSONArray array = new JSONArray();
 		for(Reward reward:rewardList) {
 			JSONObject object = new JSONObject();
-			object.put("userId", reward.getPoster());
+			object.put("userId", reward.getPoster().getUserId());
 			object.put("rewardId", reward.getRewardId());
-			object.put("name", getName(reward));
-			object.put("sex", getSex(reward));
+			object.put("name", reward.getPoster().getUserName());
+			object.put("sex", reward.getPoster().getUserSex());
 			object.put("title", reward.getRewardTitle());
 			object.put("content", reward.getRewardContent());
 			object.put("rewardTime", reward.getRewardTime());
@@ -52,9 +51,8 @@ public class RewardController {
 			object.put("money", reward.getRewardMoney());
 			array.put(object);
 		}
-		writer.println(array.toString());
-		writer.flush();
-		writer.close();
+		response.getWriter().append(array.toString()).append(request.getContextPath());
+
 	}
 	
 	@RequestMapping("/myfinish")
@@ -62,17 +60,16 @@ public class RewardController {
 	public void myFinish(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		PrintWriter writer = response.getWriter();
 		int userId=Integer.parseInt(request.getParameter("userId"));
 		JSONArray array=new JSONArray();
 		List<Reward> rewardList=rewardservice.MyPublish(userId);
 		for(Reward reward:rewardList) {
 			if(reward.getRewardState().equals("4")) {
 			JSONObject json14=new JSONObject();
-			json14.put("userId", reward.getPoster());
+			json14.put("userId", reward.getPoster().getUserId());
 			json14.put("rewardId", reward.getRewardId());
-			json14.put("name", getName(reward));
-			json14.put("sex", getSex(reward));
+			json14.put("name", reward.getPoster().getUserName());
+			json14.put("sex", reward.getPoster().getUserSex());
 			json14.put("title", reward.getRewardTitle());
 			json14.put("content", reward.getRewardContent());
 			json14.put("rewardTime", reward.getRewardTime());
@@ -83,26 +80,50 @@ public class RewardController {
 			System.err.println(json14);
 			}
 		}
-		writer.println(array.toString());
-		writer.flush();
-		writer.close();
+		response.getWriter().append(array.toString()).append(request.getContextPath());
 	}
+	
+	@RequestMapping("/myreceiver")
+	@ResponseBody
+	public void myReceiver(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		int userId=Integer.parseInt(request.getParameter("userId"));
+		JSONArray array=new JSONArray();
+		List<Reward> rewardList=rewardservice.MyPublishtwo(userId);
+		for(Reward reward:rewardList) {
+			JSONObject json14=new JSONObject();
+			json14.put("userId", reward.getPoster().getUserId());
+			json14.put("rewardId", reward.getRewardId());
+			json14.put("name", reward.getPoster().getUserName());
+			json14.put("sex", reward.getPoster().getUserSex());
+			json14.put("title", reward.getRewardTitle());
+			json14.put("content", reward.getRewardContent());
+			json14.put("rewardTime", reward.getRewardTime());
+			json14.put("endTime", reward.getRewardDeadline());
+			json14.put("money", reward.getRewardMoney());
+			json14.put("state", reward.getRewardState());
+			array.put(json14);
+			System.err.println(json14);
+		}
+		response.getWriter().append(array.toString()).append(request.getContextPath());
+	}
+	
 	
 	@RequestMapping("/mypublish")
 	@ResponseBody
 	public void myPublish(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		PrintWriter writer = response.getWriter();
 		int userId=Integer.parseInt(request.getParameter("userId"));
 		JSONArray array=new JSONArray();
 		List<Reward> rewardList = rewardservice.MyPublish(userId);
 		for(Reward reward:rewardList) {
 			JSONObject json12=new JSONObject();
-			json12.put("userId", reward.getPoster());
+			json12.put("userId", reward.getPoster().getUserId());
 			json12.put("rewardId", reward.getRewardId());
-			json12.put("name", getName(reward));
-			json12.put("sex", getSex(reward));
+			json12.put("name", reward.getPoster().getUserName());
+			json12.put("sex", reward.getPoster().getUserSex());
 			json12.put("title", reward.getRewardTitle());
 			json12.put("content", reward.getRewardContent());
 			json12.put("rewardTime", reward.getRewardTime());
@@ -112,82 +133,151 @@ public class RewardController {
 			array.put(json12);
 			System.err.println(json12);
 		}
+		response.getWriter().append(array.toString()).append(request.getContextPath());
+	}
+	
+	@RequestMapping("/deletereward")
+	@ResponseBody
+	public void deleteReward(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		PrintWriter writer = response.getWriter();
+		int rewardId=Integer.parseInt(request.getParameter("rewardId"));
+		int userId=Integer.parseInt(request.getParameter("userId"));
+		int posterId=Integer.parseInt(request.getParameter("posterId"));
+		int receiverId=Integer.parseInt(request.getParameter("receiverId"));
+		JSONObject json19 = new JSONObject();
+		JSONArray array=new JSONArray();
+		User user=userservice.checkUser(userId);
+		if(userId==posterId) {
+			Reward reward=rewardservice.getReward(rewardId);
+			if(reward.getRewardState().equals("2")) {
+				Double money1=user.getUserMoney();
+				Double money2=reward.getRewardMoney();
+				Double money=money1+money2;
+				user.setUserMoney(money);
+				userservice.money(user);
+				rewardservice.deleteReward(rewardId);
+			}else if(reward.getRewardState().equals("1")) {
+				Double money1=user.getUserMoney();
+				Double money2=reward.getRewardMoney();
+				Double money=money1+money2;
+				user.setUserMoney(money);
+				userservice.money(user);
+				rewardservice.deleteReward(rewardId);
+			}
+		}else if(userId==receiverId) {
+			Reward reward=rewardservice.getReward(rewardId);
+			reward.setReceiver(null);
+			reward.setRewardState("1");
+			rewardservice.updateReward(reward);
+		}
+		json19.put("response", "success");
+		json19.put("money", user.getUserMoney());
+		array.put(json19);
 		writer.println(array.toString());
 		writer.flush();
 		writer.close();
 	}
-	
 	
 	@RequestMapping("/publishreward")
 	@ResponseBody
 	public void publishReward(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		PrintWriter writer = response.getWriter();
 		JSONArray array=new JSONArray();
 		int posterId = Integer.parseInt(request.getParameter("posterId"));
 		String rewardTitle = request.getParameter("rewardTitle");
 		String rewardContent = request.getParameter("rewardContent");
-		String rewardImage = request.getParameter("imgUrl");
 		String rewardTime = request.getParameter("publishTime");
 		String rewardDeadline = request.getParameter("deadline");
 		double rewardMoney = Double.parseDouble(request.getParameter("rewardMoney"));
 		//此为创建赏金，状态默认为“1”
 		String rewardState = "1";
-		User user=getUser(posterId);
-		Reward reward =new Reward(user,rewardContent,rewardTitle,rewardMoney,rewardTime,rewardDeadline,rewardState,rewardImage);
+		User user=userservice.checkUser(posterId);
+		Reward reward =new Reward();
+		reward.setPoster(user);
+		reward.setRewardContent(rewardContent);
+		reward.setRewardTitle(rewardTitle);
+		reward.setRewardMoney(rewardMoney);
+		reward.setRewardDeadline(rewardDeadline);
+		reward.setRewardTime(rewardTime);
+		reward.setRewardState(rewardState);
 		rewardservice.setReward(reward);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("response", "success");
 		array.put(jsonObject);
+		response.getWriter().append(array.toString()).append(request.getContextPath());
+	}
+	
+	
+	
+	@RequestMapping("/gettask")
+	@ResponseBody
+	public void getTask(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		PrintWriter writer = response.getWriter();
+		int posterId=Integer.parseInt(request.getParameter("posterId"));
+		int receiverId=Integer.parseInt(request.getParameter("receiverId"));
+		int rewardId=Integer.parseInt(request.getParameter("rewardId"));
+		Reward reward=rewardservice.getReward(rewardId);
+		JSONObject json17 = new JSONObject();
+		JSONArray array = new JSONArray();
+		String state="2";
+		reward.setRewardState(state);
+		User receiver=userservice.checkUser(receiverId);
+		reward.setReceiver(receiver);
+		try {
+			rewardservice.reviseState(reward);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		json17.put("response", "success");
+		array.put(json17);
 		writer.println(array.toString());
 		writer.flush();
 		writer.close();
 	}
+	
 	
 	@RequestMapping("/task")
 	@ResponseBody
 	public void task(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		PrintWriter writer = response.getWriter();
 		JSONArray array=new JSONArray();
 		int userId=Integer.parseInt(request.getParameter("userId"));
 		//发布任务的被接受然后接收者点击已完成在发布人那里显示待确认
-		List<Connection> connectionListone = connectionservice.selectConnectionone(userId);
-		for(Connection con:connectionListone) {
-			List<Reward> rewardListtwo = rewardservice.MyPublishone(con.getRewardId());
-			for(Reward rewardone:rewardListtwo) {
-				if(rewardone.getRewardState().equals("3")) {
-				JSONObject json15 = new JSONObject();
-				json15.put("userId", rewardone.getPoster());
-				json15.put("rewardId", rewardone.getRewardId());
-				json15.put("name", getName(rewardone));
-				json15.put("sex", getSex(rewardone));
-				json15.put("title", rewardone.getRewardTitle());
-				json15.put("content", rewardone.getRewardContent());
-				json15.put("rewardTime", rewardone.getRewardTime());
-				json15.put("endTime", rewardone.getRewardDeadline());
-				json15.put("money", rewardone.getRewardMoney());
-				json15.put("state", rewardone.getRewardState());
-				array.put(json15);
-				System.err.println(json15);
-//				rewardList=null;
-				}
+		List<Reward> rewardListtwo = rewardservice.MyPublishthree(userId);
+		for(Reward rewardone:rewardListtwo) {
+			if(rewardone.getRewardState().equals("3")) {
+			JSONObject json15 = new JSONObject();
+			json15.put("userId", rewardone.getPoster().getUserId());
+			json15.put("rewardId", rewardone.getRewardId());
+			json15.put("name", rewardone.getPoster().getUserName());
+			json15.put("sex", rewardone.getPoster().getUserSex());
+			json15.put("title", rewardone.getRewardTitle());
+			json15.put("content", rewardone.getRewardContent());
+			json15.put("rewardTime", rewardone.getRewardTime());
+			json15.put("endTime", rewardone.getRewardDeadline());
+			json15.put("money", rewardone.getRewardMoney());
+			json15.put("state", rewardone.getRewardState());
+			array.put(json15);
+			System.err.println(json15);
 			}
-		}
-		
+		}	
+			
 		//接受发布人的任务在接受人那里显示待完成
-		List<Connection> connectionList =connectionservice.selectConnection(userId);
-		for(Connection con:connectionList) {
-			List<Reward> rewardListone = rewardservice.MyPublishone(con.getRewardId());
+			List<Reward> rewardListone = rewardservice.MyPublishtwo(userId);
 			for(Reward reward:rewardListone) {
 				if(reward.getRewardState().equals("2")) {
 				JSONObject json16 = new JSONObject();
-				json16.put("userId", reward.getPoster());
+				json16.put("userId", reward.getPoster().getUserId());
 				json16.put("rewardId", reward.getRewardId());
-				json16.put("name", getName(con));
-				json16.put("sex", getSex(con));
+				json16.put("name", reward.getPoster().getUserName());
+				json16.put("sex", reward.getPoster().getUserSex());
 				json16.put("title", reward.getRewardTitle());
 				json16.put("content", reward.getRewardContent());
 				json16.put("rewardTime", reward.getRewardTime());
@@ -196,40 +286,47 @@ public class RewardController {
 				json16.put("state", reward.getRewardState());
 				array.put(json16);
 				System.err.println(json16);
-//				rewardList=null;
 				}
 			}
+		response.getWriter().append(array.toString()).append(request.getContextPath());
+	}
+	
+	
+	@RequestMapping("/changestate")
+	@ResponseBody
+	public void changeState(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		JSONArray array=new JSONArray();
+		int rewardId=Integer.parseInt(request.getParameter("rewardId"));
+		String state=request.getParameter("state");
+		JSONObject json18 = new JSONObject();
+		Reward thisreward =rewardservice.getReward(rewardId);
+		if(thisreward.getRewardState().equals("2")) {
+		try {
+			thisreward.setRewardState(state);
+			rewardservice.save(thisreward);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		writer.println(array.toString());
-		writer.flush();
-		writer.close();
-	}
-	
-	private User getUser(int id) {
-		User user=userservice.checkUser(id);
-		return user;
-	}
-	
-	private String getName(Connection con) {
-		User user=userservice.checkUser(con.getPosterId());
-		String name=user.getUserName();
-		return name;
-	}
-	private String getSex(Connection con) {
-		User user = userservice.checkUser(con.getPosterId());
-		String sex = user.getUserSex();
-		return sex;
-	}
-	
-	
-	private String getName(Reward reward) {
-		User user = userservice.checkUser(reward.getPoster());
-		String name = user.getUserName();
-		return name;
-	}
-	private String getSex(Reward reward) {
-		User user = userservice.checkUser(reward.getPoster());
-		String sex = user.getUserSex();
-		return sex;
+		}else{
+			if(thisreward.getRewardState().equals("3")) {
+					User user=new User();
+					user=userservice.checkUser(thisreward.getReceiver().getUserId());
+					Double money1=user.getUserMoney();
+					Double money2=thisreward.getRewardMoney();
+					Double money=money1+money2;
+					user.setUserMoney(money);
+					userservice.reviseUser(user);
+					thisreward.setRewardState(state);
+					rewardservice.save(thisreward);
+				} 
+				}
+			
+		json18.put("response", "success");
+		array.put(json18);
+		response.getWriter().append(array.toString()).append(request.getContentType());
+		
 	}
 }

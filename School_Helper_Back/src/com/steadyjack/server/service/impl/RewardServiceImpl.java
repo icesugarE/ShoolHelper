@@ -18,6 +18,10 @@ public class RewardServiceImpl implements RewardService{
 		rewardDao.setReward(reward);
 	}
 	
+	public void deleteReward(int rewardId) {
+		rewardDao.deleteReward(rewardId);
+	}
+	
 	public List<Reward> selectBoardReward(){
 		return rewardDao.selectBoardReward();
 	}
@@ -26,15 +30,29 @@ public class RewardServiceImpl implements RewardService{
 		return rewardDao.MyPublish(posterId);
 	}
 	
-	public List<Reward> MyPublishone(int rewardId){
+	public Reward MyPublishone(int rewardId){
 		return rewardDao.MyPublishone(rewardId);
 	}
 	
+	public List<Reward> MyPublishtwo(int userId){
+		return rewardDao.MyPublishtwo(userId);
+	}
+	public List<Reward> MyPublishthree(int userId){
+		return rewardDao.MyPublishthree(userId);
+	}
 	public int reviseState(Reward reward) {
 		return rewardDao.reviseState(reward);
 	}
-	
+	public int updateReward(Reward reward) {
+		return rewardDao.updateReward(reward);
+	}
+	public int save(Reward reward) {
+		return rewardDao.reviseState(reward);
+	}
 	public List<Reward> getAllReward(){
 		return rewardDao.getAllReward();
+	}
+	public Reward getReward(int rewardId){
+		return rewardDao.getReward(rewardId);
 	}
 }

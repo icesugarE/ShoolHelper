@@ -9,9 +9,9 @@ public interface UserService {
 	public void setUser(User user);
 	
 	public int reviseUser(User user);
-	
+	public void money(User user);
 	public List<User> getAllUser();
 	
-	public User checkUser(int i);
-	public User checkUser(User user);
+	public User checkUser(int userId);
+	public User checkPhone(String phone);
 }

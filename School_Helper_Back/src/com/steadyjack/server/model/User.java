@@ -201,4 +201,11 @@ public class User {
 	public void setReceiverList(List<Reward> receiverList) {
 		this.receiverList = receiverList;
 	}
+
+	@Override
+	public String toString() {
+		return "User [userName=" + userName + ", userPassword=" + userPassword + ", userStudentNum=" + userStudentNum
+				+ ", userPhone=" + userPhone + "]";
+	}
+	
 }

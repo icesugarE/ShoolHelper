@@ -33,15 +33,9 @@ public class UserController {
 		PrintWriter writer = response.getWriter();
 		double money=Double.parseDouble(request.getParameter("money"));
 		String phone=request.getParameter("phone");
-		User user=new User();
-		List<User> userList=userservice.getAllUser();
+		User user=userservice.checkPhone(phone);
 		JSONObject json10 = new JSONObject();
 		JSONArray array = new JSONArray();
-		for(User thisUser:userList) {
-			if(thisUser.getUserPhone().equals(phone)){
-				user=thisUser;
-			}
-		}
 		double moneyone=money+user.getUserMoney();
 		user.setUserMoney(moneyone);
 		try {
@@ -67,19 +61,16 @@ public class UserController {
 		PrintWriter writer = response.getWriter();
 		double money=Double.parseDouble(request.getParameter("money"));
 		String phone=request.getParameter("phone");
-		User user=new User();
-		List<User> userList = userservice.getAllUser(); 
+		User user=userservice.checkPhone(phone);
 		JSONObject json11 = new JSONObject();
 		JSONArray array = new JSONArray();
-		for(User thisUser:userList) {
-			if(thisUser.getUserPhone().equals(phone)){
-				user=thisUser;
-			}
-		}
 		double moneyone=user.getUserMoney()-money;
 		user.setUserMoney(moneyone);
 		try {
 			userservice.reviseUser(user);
+			System.out.println(user.getUserName());
+			System.out.println(user.getUserPassword());
+			System.out.println(user.getUserRealname());
 			json11.put("success", "提现成功");
 			json11.put("error", "error");
 			json11.put("money", user.getUserMoney());
@@ -169,10 +160,10 @@ public class UserController {
 				json5.put("signature", user.getUserSignature());
 				json5.put("realname", user.getUserRealname());
 				json5.put("sex", user.getUserSex());
+				System.out.println(user.getUserName());
 				array.put(json5);
 			}
 		}
-//		response.getWriter().append(array.toString()).append(request.getContextPath());
 		writer.println(array.toString());
 		writer.flush();
 		writer.close();
@@ -188,6 +179,7 @@ public class UserController {
 		String name=request.getParameter("name");
 		String password=request.getParameter("password");
 		String phone=request.getParameter("phone");
+		System.out.println(name);
 		School school=new School(1,"河北师范大学");
 		String stuNumber=request.getParameter("stuNumber");
 		String image="images/geren.png";
@@ -221,6 +213,7 @@ public class UserController {
 			json1.put("success", "注册成功");
 			json1.put("error","error");
 			array.put(json1);
+			System.out.println(user);
 			userservice.setUser(user);
 		}else {
 			json2.put("error", "用户已存在");
@@ -243,7 +236,6 @@ public class UserController {
 		String name=request.getParameter("name");
 		String phone=request.getParameter("phone");
 		String signature=request.getParameter("write");
-//		String password=request.getParameter("password");
 		String realname=request.getParameter("realname");
 		String sex=request.getParameter("sex");
 		String identification=request.getParameter("identification");
@@ -342,47 +334,47 @@ public class UserController {
 		writer.close();
 	}
 	
-	@RequestMapping("/loginone")
-	@ResponseBody
-	public void loginOne(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		String phone=request.getParameter("phone");
-		String password=request.getParameter("password");
-		PrintWriter writer = response.getWriter();
-		System.out.println(phone);
-		System.out.println(password);
-		JSONObject js = new JSONObject();
-		JSONArray array = new JSONArray();
-		List<User> userList =userservice.getAllUser();
-		User user=new User();
-		for(User thisUser:userList) {
-			if(thisUser.getUserPhone().equals(phone)) {
-				user=thisUser;
-			}
-		}
-		js.put("name", user.getUserName());
-		js.put("realname", user.getUserRealname());
-		js.put("phone", user.getUserPhone());
-		array.put(js);
-		writer.println(array.toString());
-		writer.flush();
-		writer.close();
-	}
-	@RequestMapping("/logintwo")
-	@ResponseBody
-	public void loginTwo(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		String name=request.getParameter("user");
-		PrintWriter writer = response.getWriter();
-		System.out.println(name);
-		JSONObject js = new JSONObject();
-		JSONArray array = new JSONArray();
-		js.put("success", "成功");
-		array.put(js);
-		writer.println(array.toString());
-		writer.flush();
-		writer.close();
-	}
+	
+	/*测试专用*/
+//	@RequestMapping("/loginone")
+//	@ResponseBody
+//	public void loginOne(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception {
+//		request.setCharacterEncoding("utf-8");
+//		response.setCharacterEncoding("utf-8");
+//		PrintWriter writer = response.getWriter();
+//		int posterId = Integer.parseInt(request.getParameter("posterId"));
+//		String rewardTitle = request.getParameter("rewardTitle");
+//		String rewardContent = request.getParameter("rewardContent");
+//		String rewardImage = request.getParameter("imgUrl");
+//		String rewardTime = request.getParameter("publishTime");
+//		String rewardDeadline = request.getParameter("deadline");
+//		double rewardMoney = Double.parseDouble(request.getParameter("rewardMoney"));
+//		System.out.println(posterId);
+//		System.out.println(rewardTitle);
+//		System.out.println(rewardContent);
+//		JSONObject js = new JSONObject();
+//		JSONArray array = new JSONArray();
+//		List<User> userList =userservice.getAllUser();
+//		
+//		array.put(js);
+//		writer.println(array.toString());
+//		writer.flush();
+//		writer.close();
+//	}
+//	@RequestMapping("/logintwo")
+//	@ResponseBody
+//	public void loginTwo(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception {
+//		request.setCharacterEncoding("utf-8");
+//		response.setCharacterEncoding("utf-8");
+//		String name=request.getParameter("user");
+//		PrintWriter writer = response.getWriter();
+//		System.out.println(name);
+//		JSONObject js = new JSONObject();
+//		JSONArray array = new JSONArray();
+//		js.put("success", "成功");
+//		array.put(js);
+//		writer.println(array.toString());
+//		writer.flush();
+//		writer.close();
+//	}
 }

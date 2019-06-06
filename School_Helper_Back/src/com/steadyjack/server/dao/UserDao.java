@@ -9,9 +9,9 @@ public interface UserDao {
 	public void setUser(User user);
 	
 	public int reviseUser(User user);
-	
+	public void money(User user);
 	public List<User> getAllUser();
 	
 	public User checkUser(int userId);
-	public User checkUser(User user);
+	public User checkPhone(String phone);
 }
