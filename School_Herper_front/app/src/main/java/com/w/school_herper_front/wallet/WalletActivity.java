@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +19,8 @@ import com.w.school_herper_front.R;
 import com.w.school_herper_front.SendDatesToServer;
 import com.w.school_herper_front.wallet.WalletDepositActivity;
 public class WalletActivity extends AppCompatActivity {
-    private LinearLayout deposit1;
-    private LinearLayout withdraw1;
+    private RelativeLayout deposit1;
+    private RelativeLayout withdraw1;
     private ImageView back1;
     private TextView money;
 

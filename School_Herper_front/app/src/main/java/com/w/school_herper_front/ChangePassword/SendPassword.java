@@ -8,6 +8,7 @@ import com.w.school_herper_front.ServerUrl;
 import com.w.school_herper_front.User;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -18,6 +19,12 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 /*
  * 功能：密码修改
  * 开发人：杨旭辉
@@ -71,7 +78,7 @@ public class SendPassword {
         // TODO Auto-generated method stub
         StringBuffer sb = new StringBuffer(url);
         if (!url.equals("")&!param.isEmpty()) {
-            sb.append("/School_Helper_Back/UpdateServletone");
+            sb.append("/School_Helper_Back/updateone");
             sb.append("?");
             for (Map.Entry<String, String>entry:param.entrySet()) {
                 sb.append(entry.getKey()+"=");
@@ -80,30 +87,32 @@ public class SendPassword {
             }
             sb.deleteCharAt(sb.length()-1);//删除字符串最后 一个字符“&”
         }
-        HttpURLConnection conn=(HttpURLConnection) new URL(sb.toString()).openConnection();
-        conn.setReadTimeout(5000);
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("charset","UTF-8");
-        conn.setConnectTimeout(5000);
-        conn.setDoInput(true);
-        if (conn.getResponseCode()==200) {
-            //数据接收
-            InputStream in = conn.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-            String res=reader.readLine();
-            array=new JSONArray(res);
-            for(int i=0;i<array.length();i++) {
-                object = array.getJSONObject(i);
-                /*
-                 * 功能：把数据库数据存到静态user中，以方便后续获取数据
-                 * 开发人：杨旭辉
-                 * 开发时间：2018.12.17
-                 */
-                SendDatesToServer.user1.setPassword(object.getString("password"));
-                Log.e("name", SendDatesToServer.user1.getName());
+
+
+        //1.构建一个OkHttpClient
+        OkHttpClient okHttpClient = new OkHttpClient();
+        //2.构建一个Request
+        final Request request = new Request.Builder()
+                .url(sb.toString())
+                .build();
+        //3.获得Call对象
+        Call call = okHttpClient.newCall(request);
+
+        Response response = call.execute();
+        //响应成功
+        if(response.isSuccessful()){
+            String json = response.body().string();
+            try {
+                array = new JSONArray(json);
+                for (int i = 0; i < array.length(); i++) {
+                    object = array.getJSONObject(i);
+                    SendDatesToServer.user1.setPassword(object.getString("password"));
+                    Log.e("name", SendDatesToServer.user1.getName());
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            return true;
         }
-        return false;
+        return true;
     }
 }

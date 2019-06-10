@@ -40,7 +40,7 @@
 
     <RelativeLayout
         android:id="@+id/ln_a"
-        android:layout_width="600dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/box_color1">
@@ -49,7 +49,6 @@
             android:id="@+id/t1"
             android:layout_width="wrap_content"
             android:layout_height="80dp"
-            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_gravity="center">
 
@@ -57,17 +56,18 @@
                 android:layout_width="70dp"
                 android:layout_height="38dp"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/logos" />
+                android:src="@drawable/logos"
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
         <RelativeLayout
-            android:layout_width="245dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:id="@+id/t12"
             android:layout_toRightOf="@+id/t1"
             android:layout_marginLeft="10dp">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="22dp"
                 android:text="官方通知"
                 android:id="@+id/gftz"
@@ -76,7 +76,7 @@
                 android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_marginTop="2dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_below="@+id/gftz"
                 android:text="你的代取快递任务发布成功"
@@ -88,19 +88,20 @@
             android:layout_toRightOf="@+id/t12"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="12:21"
                 android:textSize="12dp"
+                android:layout_alignParentRight="true"
                 android:textColor="#888888"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginRight="20dp"/>
         </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/ln_b"
-        android:layout_width="600dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="120dp"
         android:background="@drawable/box_color1">
@@ -114,17 +115,18 @@
                 android:layout_width="70dp"
                 android:layout_height="38dp"
                 android:layout_marginTop="1dp"
-                android:src="@drawable/logos" />
+                android:src="@drawable/logos"
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
         <RelativeLayout
-            android:layout_width="245dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:id="@+id/t22"
             android:layout_toRightOf="@+id/t2"
             android:layout_marginLeft="10dp">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="22dp"
                 android:text="官方通知"
                 android:id="@+id/gftz1"
@@ -133,7 +135,7 @@
                 android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_marginTop="2dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_below="@+id/gftz1"
                 android:text="你的代取快递任务取消成功"
@@ -145,19 +147,20 @@
             android:layout_toRightOf="@+id/t22"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="12:21"
                 android:textSize="12dp"
+                android:layout_alignParentRight="true"
                 android:textColor="#888888"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginRight="20dp"/>
         </RelativeLayout>
     </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/ln_c"
-        android:layout_width="600dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="180dp"
         android:background="@drawable/box_color1">
@@ -171,17 +174,18 @@
                 android:layout_width="70dp"
                 android:layout_height="41dp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/logos" />
+                android:src="@drawable/logos"
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
         <RelativeLayout
-            android:layout_width="245dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:id="@+id/t32"
             android:layout_toRightOf="@+id/t3"
             android:layout_marginLeft="10dp">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="22dp"
                 android:text="官方通知"
                 android:id="@+id/gftz2"
@@ -190,7 +194,7 @@
                 android:layout_marginTop="5dp"/>
             <TextView
                 android:layout_marginTop="2dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_below="@+id/gftz2"
                 android:text="你的代取快递任务已被接收"
@@ -202,13 +206,14 @@
             android:layout_toRightOf="@+id/t32"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="12:21"
                 android:textSize="12dp"
+                android:layout_alignParentRight="true"
                 android:textColor="#888888"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginRight="20dp"/>
         </RelativeLayout>
     </LinearLayout>
 

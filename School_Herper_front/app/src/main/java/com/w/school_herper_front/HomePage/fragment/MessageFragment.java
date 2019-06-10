@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.w.school_herper_front.R;
 import com.w.school_herper_front.Talk.MessageTalkActivity;
@@ -23,10 +24,10 @@ import com.w.school_herper_front.wallet.WalletActivity;
  * A simple {@link Fragment} subclass.
  */
 public class MessageFragment extends Fragment {
-    private LinearLayout lna;
-    private LinearLayout lnb;
-    private LinearLayout lnc;
-    private LinearLayout lnUser;
+    private RelativeLayout lna;
+    private RelativeLayout lnb;
+    private RelativeLayout lnc;
+    private RelativeLayout lnUser;
 
 
     public MessageFragment() {

@@ -13,7 +13,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/wallet_L_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,9 +36,9 @@
             android:text="我的钱包"
             android:textColor="#FFFFFF"
             android:textSize="18sp" />
-    </FrameLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/wallet_L_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,8 +61,9 @@
             android:gravity="center"
             android:text="我的余额"
             android:textColor="#FFFFFF"
-            android:textSize="18sp" />
-    </LinearLayout>
+            android:textSize="18sp"
+            android:layout_below="@+id/wallet_text1"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/wallet_L_3"
@@ -72,7 +73,7 @@
         android:padding="1dp">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/ln_deposit"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -80,21 +81,25 @@
             android:background="#FFCCCC"
             android:layout_weight="1">
             <ImageView
+                android:id="@+id/ima_chongzhi"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/wallet1"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="40dp"/>
+                android:layout_marginLeft="40dp"
+                android:layout_centerVertical="true"/>
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:text="充值"
                 android:textColor="#000000"
                 android:textSize="22sp"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp"/>
-        </LinearLayout>
-        <LinearLayout
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/ima_chongzhi"/>
+        </RelativeLayout>
+        <RelativeLayout
             android:id="@+id/ln_draw"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -103,6 +108,7 @@
             android:background="#FFCCCC"
             android:layout_weight="1">
             <ImageView
+                android:id="@+id/img_tixian"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/wallet"
@@ -110,16 +116,18 @@
                 android:layout_marginLeft="33dp"/>
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:text="提现"
                 android:textColor="#000000"
                 android:textSize="22sp"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp"/>
-        </LinearLayout>
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/img_tixian"/>
+        </RelativeLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -128,7 +136,7 @@
         android:padding="1dp">
 
         <TextView
-            android:layout_width="330dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginLeft="12dp"
             android:gravity="center_vertical"
@@ -139,12 +147,13 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:src="@drawable/home_publish_arrows_right" />
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
@@ -152,7 +161,7 @@
         android:padding="1dp">
 
         <TextView
-            android:layout_width="280dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginLeft="12dp"
             android:gravity="center_vertical"
@@ -161,22 +170,27 @@
             android:textSize="18sp" />
 
         <TextView
-            android:layout_width="50dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="未添加"
             android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:layout_marginRight="12dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/img_yinhangka"/>
 
         <ImageView
+            android:id="@+id/img_yinhangka"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:src="@drawable/home_publish_arrows_right" />
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
@@ -184,7 +198,7 @@
         android:padding="1dp">
 
         <TextView
-            android:layout_width="280dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginLeft="12dp"
             android:gravity="center_vertical"
@@ -193,22 +207,27 @@
             android:textSize="18sp" />
 
         <TextView
-            android:layout_width="50dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="未添加"
             android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:layout_marginRight="12dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/img_zhifubao"/>
 
         <ImageView
+            android:id="@+id/img_zhifubao"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:src="@drawable/home_publish_arrows_right" />
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
@@ -216,7 +235,7 @@
         android:padding="1dp">
 
         <TextView
-            android:layout_width="330dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginLeft="12dp"
             android:gravity="center_vertical"
@@ -227,23 +246,17 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:src="@drawable/home_publish_arrows_right" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -251,6 +264,7 @@
             android:gravity="center"
             android:text="常见问题"
             android:textColor="#0000FF"
-            android:textSize="15sp" />
-    </LinearLayout>
+            android:textSize="15sp"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
 </LinearLayout>

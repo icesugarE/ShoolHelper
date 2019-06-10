@@ -121,7 +121,7 @@ public class BoardFragment extends Fragment {
         protected List<board> doInBackground(Void... voids) {
 
             final StringBuffer stringBuffer = new StringBuffer(url);
-            stringBuffer.append("/School_Helper_Back/BoardItemServlet");
+            stringBuffer.append("/School_Helper_Back/boraditem");
             HttpURLConnection conn = null;
             try {
                 conn = (HttpURLConnection) new URL(stringBuffer.toString()).openConnection();

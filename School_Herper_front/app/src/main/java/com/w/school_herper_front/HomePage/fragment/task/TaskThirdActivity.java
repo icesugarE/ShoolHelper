@@ -96,7 +96,7 @@ public class TaskThirdActivity extends AppCompatActivity {
         @Override
         protected List<board> doInBackground(Void... voids) {
             final StringBuffer stringBuffer = new StringBuffer(url);
-            stringBuffer.append("/School_Helper_Back/MyFinishServlet");
+            stringBuffer.append("/School_Helper_Back/myfinish");
             stringBuffer.append("?userId=");
             stringBuffer.append(URLEncoder.encode(String.valueOf(SendDatesToServer.user1.getUserId())));
             HttpURLConnection conn = null;

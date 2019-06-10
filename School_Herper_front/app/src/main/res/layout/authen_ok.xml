@@ -75,7 +75,7 @@
             android:layout_height="35dp"
             android:background="@drawable/back_color2"
             android:layout_marginTop="125dp"
-            android:layout_marginLeft="105dp"
+            android:layout_marginLeft="240dp"
             android:gravity="center">
             <TextView
                 android:layout_width="wrap_content"

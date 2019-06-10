@@ -97,7 +97,7 @@ public class TaskSecondActivity extends AppCompatActivity {
         @Override
         protected List<board> doInBackground(Void... voids) {
             final StringBuffer stringBuffer = new StringBuffer(url);
-            stringBuffer.append("/School_Helper_Back/MyRecriveServlet");
+            stringBuffer.append("/School_Helper_Back/myreceiver");
             stringBuffer.append("?userId=");
             stringBuffer.append(URLEncoder.encode(String.valueOf(SendDatesToServer.user1.getUserId())));
             HttpURLConnection conn = null;

@@ -1,5 +1,6 @@
 package com.w.school_herper_front.Message;
 
+import android.animation.RectEvaluator;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,8 +42,8 @@ import java.io.IOException;
 
 public class MessageSetActivity extends Activity {
     private int userId;
-    private LinearLayout authen;
-    private LinearLayout changepsd;
+    private RelativeLayout authen;
+    private RelativeLayout changepsd;
     private ImageView back1;
     private ImageView headphoto;
     private EditText username;

@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.w.school_herper_front.HomePage.fragment.board.board;
@@ -71,9 +72,9 @@ public class TaskFragment extends Fragment {
         /**
          * 绑定顶部三个按钮点击事件
          */
-        LinearLayout linearLayout1 = view.findViewById(R.id.tab1);
-        LinearLayout linearLayout2 = view.findViewById(R.id.tab2);
-        LinearLayout linearLayout3 = view.findViewById(R.id.tab3);
+        RelativeLayout linearLayout1 = view.findViewById(R.id.tab1);
+        RelativeLayout linearLayout2 = view.findViewById(R.id.tab2);
+        RelativeLayout linearLayout3 = view.findViewById(R.id.tab3);
         linearLayout1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -190,7 +191,7 @@ public class TaskFragment extends Fragment {
         @Override
         protected List<board> doInBackground(Void... voids) {
             final StringBuffer stringBuffer = new StringBuffer(url);
-            stringBuffer.append("/School_Helper_Back/TaskServlet");
+            stringBuffer.append("/School_Helper_Back/task");
             stringBuffer.append("?userId=");
             stringBuffer.append(URLEncoder.encode(String.valueOf(SendDatesToServer.user1.getUserId())));
             HttpURLConnection conn = null;

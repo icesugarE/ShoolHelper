@@ -46,23 +46,26 @@
         android:orientation="horizontal"
         android:background="@drawable/textview_border">
         <ImageView
+            android:id="@+id/imgone"
             android:layout_width="42dp"
             android:layout_height="match_parent"
             android:src="@drawable/phone"
             android:layout_marginTop="7dp"
             android:layout_marginLeft="7dp"
             android:layout_centerVertical="true"/>
+
         <EditText
             android:id="@+id/forgotkey_phonenumber"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="请输入手机号"
-            android:text=""
-            android:textSize="15sp"
-            android:textColor="#AAAAAA"
-            android:paddingLeft="15dp"
+            android:layout_alignParentTop="true"
             android:background="@drawable/textview_border"
-            android:layout_centerVertical="true"/>
+            android:hint="请输入手机号"
+            android:paddingLeft="15dp"
+            android:text=""
+            android:textColor="#AAAAAA"
+            android:textSize="15sp"
+            android:layout_toRightOf="@+id/imgone" />/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -73,6 +76,7 @@
         android:orientation="horizontal"
         android:background="@drawable/textview_border">
         <ImageView
+            android:id="@+id/imgtwo"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:src="@drawable/input"
@@ -83,7 +87,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/textview_border"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:layout_toRightOf="@+id/imgtwo">
             <EditText
                 android:id="@+id/forgotkey_input"
                 android:layout_width="210dp"
@@ -94,7 +99,7 @@
                 android:textSize="15sp"
                 android:textColor="#AAAAAA"
                 android:paddingLeft="15dp"
-                android:background="@null"/>
+                android:background="@null" />
             <Button
                 android:layout_width="90dp"
                 android:layout_height="40dp"
@@ -115,6 +120,7 @@
         android:orientation="horizontal"
         android:background="@drawable/textview_border">
         <ImageView
+            android:id="@+id/imgthree"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:src="@drawable/password"
@@ -131,7 +137,8 @@
             android:textColor="#AAAAAA"
             android:paddingLeft="15dp"
             android:background="@drawable/textview_border"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imgthree"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -142,6 +149,7 @@
         android:orientation="horizontal"
         android:background="@drawable/textview_border">
         <ImageView
+            android:id="@+id/imgfour"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:src="@drawable/password"
@@ -158,7 +166,8 @@
             android:textColor="#AAAAAA"
             android:paddingLeft="15dp"
             android:background="@drawable/textview_border"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imgfour"/>
     </RelativeLayout>
 
     <RelativeLayout

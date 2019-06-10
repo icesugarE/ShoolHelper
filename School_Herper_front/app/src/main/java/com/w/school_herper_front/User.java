@@ -20,7 +20,7 @@ public class User {
     private String stuWriter;
     private String sex;
     private int userId;
-    private int schoolId;
+    private String schoolId;
     private String image;
     private int value;
     private double money;
@@ -53,11 +53,11 @@ public class User {
         this.userId = userId;
     }
 
-    public int getSchoolId() {
+    public String getSchoolId() {
         return schoolId;
     }
 
-    public void setSchoolId(int schoolId) {
+    public void setSchoolId(String schoolId) {
         this.schoolId = schoolId;
     }
 

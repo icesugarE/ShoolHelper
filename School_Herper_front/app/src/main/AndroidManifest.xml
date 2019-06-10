@@ -32,7 +32,6 @@
         <activity android:name=".wallet.WalletActivity" />
         <activity android:name=".wallet.WalletWithDrawActivity" />
         <activity android:name=".wallet.WalletDepositActivity" />
-        <activity android:name=".ChangeKeyActivity" />
         <activity android:name=".HomePage.OtherHomeActivity" />
         <activity android:name=".ChangePassword.ChangePassword" />
         <activity android:name=".ChangePassword.ChangePasswordok" />
