@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,12 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.w.school_herper_front.HomePage.fragment.board.board;
 import com.w.school_herper_front.HomePage.fragment.task.TaskAdapter;
 import com.w.school_herper_front.HomePage.fragment.task.TaskFirstActivity;
@@ -57,6 +65,7 @@ public class TaskFragment extends Fragment {
     private String url = new ServerUrl().getUrl();
     List<Integer> ImageUrlData;
     List<String>ContentData;
+    private SmartRefreshLayout smartRefreshLayout;
     /*
     * 这是任务页
     * */
@@ -98,7 +107,30 @@ public class TaskFragment extends Fragment {
         });
 
 
-
+        smartRefreshLayout=view.findViewById(R.id.SmartRlTask);
+        smartRefreshLayout.setRefreshHeader(new BezierRadarHeader(getContext()));
+        smartRefreshLayout.setRefreshFooter(new BallPulseFooter(getContext()));
+        //下拉刷新
+        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        boards.clear();
+                        new TaskAsyncTask().execute();
+                        smartRefreshLayout.finishRefresh();
+                    }
+                },200);
+            }
+        });
+        smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                //...
+                smartRefreshLayout.finishLoadMore();
+            }
+        });
         /**
          * 列出所有任务Adapter
          * 数据库建立后从数据库获取

@@ -8,6 +8,8 @@ package com.w.school_herper_front.HomePage.fragment;
 //跳转到设置页面
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.w.school_herper_front.R;
 import com.w.school_herper_front.Talk.MessageTalkActivity;
 import com.w.school_herper_front.Talk.MessageUserActivity;
@@ -28,6 +36,7 @@ public class MessageFragment extends Fragment {
     private RelativeLayout lnb;
     private RelativeLayout lnc;
     private RelativeLayout lnUser;
+    private SmartRefreshLayout smartRefreshLayout;
 
 
     public MessageFragment() {
@@ -47,6 +56,31 @@ public class MessageFragment extends Fragment {
         lnb = view.findViewById(R.id.ln_b);
         lnc = view.findViewById(R.id.ln_c);
         lnUser = view.findViewById(R.id.ln_user);
+
+
+        smartRefreshLayout=view.findViewById(R.id.SmartRlMessage);
+        smartRefreshLayout.setRefreshHeader(new BezierRadarHeader(getContext()));
+        smartRefreshLayout.setRefreshFooter(new BallPulseFooter(getContext()));
+        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //...
+                        smartRefreshLayout.finishRefresh();
+                    }
+                },200);
+            }
+        });
+        smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                //...
+                smartRefreshLayout.finishLoadMore();
+            }
+        });
+
 
         //跳转单独对话框
         lnUser.setOnClickListener(new View.OnClickListener(){

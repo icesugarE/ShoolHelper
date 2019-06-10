@@ -40,14 +40,17 @@
             android:layout_height="match_parent"
             android:src="@drawable/findmessage"/>
     </LinearLayout>
-
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/SmartRlBoard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <!-- TODO: Update blank fragment layout -->
     <ListView
         android:id="@+id/lv_boards"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"></ListView>
-
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
     <!--
         开发人：尚一飞
         功能：悬浮按钮

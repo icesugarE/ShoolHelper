@@ -2,6 +2,8 @@ package com.w.school_herper_front.HomePage.fragment.task;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +11,12 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.w.school_herper_front.HomePage.fragment.board.board;
 import com.w.school_herper_front.HomeShowContentActivity;
 import com.w.school_herper_front.R;
@@ -34,7 +42,7 @@ public class TaskFirstActivity extends AppCompatActivity {
     ListView listView;
     ImageView back;
     private String url = new ServerUrl().getUrl();
-
+    private SmartRefreshLayout smartRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +66,31 @@ public class TaskFirstActivity extends AppCompatActivity {
 //        tasks.add(task2);
 //        task task3 = new task(R.drawable.myhead,"我的名字","2018-12-12","代取快递","待验收");
 //        tasks.add(task3);
+
+        smartRefreshLayout=findViewById(R.id.SmartR);
+        smartRefreshLayout.setRefreshHeader(new BezierRadarHeader(this));
+        smartRefreshLayout.setRefreshFooter(new BallPulseFooter(this));
+        //给智能刷新控件注册下拉刷新监听器
+        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        boards.clear();
+                        new TaskAsyncTask().execute();
+                        smartRefreshLayout.finishRefresh();
+                    }
+                },200);
+            }
+        });
+        smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                //...
+                smartRefreshLayout.finishLoadMore();
+            }
+        });
 
         new TaskAsyncTask().execute();
         listView = findViewById(R.id.lv_task_first);

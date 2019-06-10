@@ -12,7 +12,14 @@
     <!--开发人：尚一飞-->
     <!-- TODO: Update blank fragment layout -->
     <!--head-->
-
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/SmartRlTask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
     <RelativeLayout
         android:id="@+id/RL_09"
         android:layout_width="match_parent"
@@ -110,4 +117,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+        </LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </RelativeLayout>

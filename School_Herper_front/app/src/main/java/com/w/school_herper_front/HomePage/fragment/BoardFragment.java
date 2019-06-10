@@ -4,6 +4,8 @@ package com.w.school_herper_front.HomePage.fragment;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +14,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.w.school_herper_front.HomePage.fragment.board.BoardAdapter;
 import com.w.school_herper_front.HomePage.fragment.board.board;
 import com.w.school_herper_front.HomePublishActivity;
@@ -43,6 +51,7 @@ public class BoardFragment extends Fragment {
     ListView listView;
     final List<board> boards = new ArrayList<>();
     private String url = new ServerUrl().getUrl();
+    private SmartRefreshLayout smartRefreshLayout;
 
     public BoardFragment() {
         // Required empty public constructor
@@ -71,6 +80,30 @@ public class BoardFragment extends Fragment {
         });
 
 
+        smartRefreshLayout=view.findViewById(R.id.SmartRlBoard);
+        smartRefreshLayout.setRefreshHeader(new BezierRadarHeader(getContext()));
+        smartRefreshLayout.setRefreshFooter(new BallPulseFooter(getContext()));
+        //给智能刷新控件注册下拉刷新监听器
+        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        boards.clear();
+                        new BoardAsyncTask().execute();
+                        smartRefreshLayout.finishRefresh();
+                    }
+                },200);
+            }
+        });
+        smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                //...
+                smartRefreshLayout.finishLoadMore();
+            }
+        });
         /**
          * 布告栏内容
          * 数据库建立好后所有信息从数据库中存取
