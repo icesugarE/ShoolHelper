@@ -81,6 +81,17 @@ public class RewardDaoImpl extends BaseDaoImpl implements RewardDao{
 		return ret;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Reward> selectRelateReward(String word){
+	 
+		//开始查询
+		String hql = "from Reward where rewardTitle like '%"+word+"%'";
+		Query query = getSession().createQuery(hql);
+		List<Reward> rewards = query.list();
+		return rewards;
+	}
+	
+	
 	public int updateReward(Reward reward) {
 		//开始更新
 //		Transaction tx = getSession().beginTransaction();

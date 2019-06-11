@@ -136,6 +136,40 @@ public class RewardController {
 		response.getWriter().append(array.toString()).append(request.getContextPath());
 	}
 	
+
+	@RequestMapping("/search")
+		@ResponseBody
+		public void  search(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception{
+			request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
+			PrintWriter writer = response.getWriter();
+			JSONArray array=new JSONArray();
+			String rewardTitle = request.getParameter("word");
+			List<Reward> rewardList = rewardservice.selectRelateReward(rewardTitle);
+			for(Reward reward:rewardList) {
+				if(reward.getRewardState().equals("1")) {
+				JSONObject json17 = new JSONObject();
+				json17.put("userId", reward.getPoster().getUserId());
+				json17.put("rewardId", reward.getRewardId());
+				json17.put("name", reward.getPoster().getUserName());
+				json17.put("sex", reward.getPoster().getUserSex());
+				json17.put("title", reward.getRewardTitle());
+				json17.put("content", reward.getRewardContent());
+				json17.put("rewardTime", reward.getRewardTime());
+				json17.put("endTime", reward.getRewardDeadline());
+				json17.put("money", reward.getRewardMoney());
+				json17.put("state", reward.getRewardState());
+				array.put(json17);
+				System.err.println(json17);
+				}
+			}
+			writer.println(array.toString());
+			writer.flush();
+			writer.close();
+			
+		}
+	
+	
 	@RequestMapping("/deletereward")
 	@ResponseBody
 	public void deleteReward(ModelMap map,HttpServletRequest request,HttpServletResponse response) throws Exception{

@@ -29,6 +29,9 @@ public class RewardServiceImpl implements RewardService{
 	public List<Reward> MyPublish(int posterId){
 		return rewardDao.MyPublish(posterId);
 	}
+	public List<Reward> selectRelateReward(String word){
+		return rewardDao.selectRelateReward(word);
+	}
 	
 	public Reward MyPublishone(int rewardId){
 		return rewardDao.MyPublishone(rewardId);

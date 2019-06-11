@@ -12,7 +12,7 @@ public interface RewardDao {
 	public List<Reward> selectBoardReward();
 	
 	public List<Reward> MyPublish(int posterId);
-	
+	public List<Reward> selectRelateReward(String word);
 	public Reward MyPublishone(int rewardId);
 	public List<Reward> MyPublishtwo(int userId);
 	public List<Reward> MyPublishthree(int userId);
