@@ -13,6 +13,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.w.school_herper_front.thread.ClientThread;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -126,6 +128,7 @@ public class SendDatesToServer {
                         user1.setIdentification(object.getString("identification"));
                         user1.setStuWriter(object.getString("signature"));
                         user1.setSex(object.getString("sex"));
+                        MainApplication.getInstance().sendAction(ClientThread.LOGIN, user1.getName(), "");
                         Log.e("id", user1.getName());
                         Log.e("success",object.getString("success"));
                     } catch (JSONException e) {

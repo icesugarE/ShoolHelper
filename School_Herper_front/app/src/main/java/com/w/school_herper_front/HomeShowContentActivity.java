@@ -139,7 +139,9 @@ public class HomeShowContentActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(HomeShowContentActivity.this, MessageTalkActivity.class);
-                    i.putExtra("id",user.getUserId());
+//                    i.putExtra("id",user.getUserId());
+                    i.putExtra("name",user.getName());
+
                     startActivity(i);
                 }
             });

@@ -63,11 +63,11 @@ public class BoardFragment extends Fragment {
     }
 
 
-/*
-* 开发人：尚一飞
-* 这是布告栏页
-* 简介：与BoardFragment  board交互使用
-* */
+    /*
+     * 开发人：尚一飞
+     * 这是布告栏页
+     * 简介：与BoardFragment  board交互使用
+     * */
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,8 +84,8 @@ public class BoardFragment extends Fragment {
             }
         });
         /*
-        * 悬浮按钮绑定点击事件
-        * */
+         * 悬浮按钮绑定点击事件
+         * */
         FloatingActionButton floatingActionButton = view.findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override

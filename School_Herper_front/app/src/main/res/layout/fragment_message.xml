@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-/*
- * 功能：消息页面的前台实现xml部分
- * 开发人：赵璐 刘亚峰
- * 开发时间：2018.12.24
- *
- * 描述：
+/**
+ * @CONTENT: publish content
+ * @DEVELOPER: Zhangxixian
+ * @DATE: 18/12/16
  */
 -->
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomePage.fragment.MessageFragment"
     android:id="@+id/frame_message">
+    <!--<com.scwang.smartrefresh.layout.SmartRefreshLayout-->
+        <!--android:id="@+id/SmartRlMessage"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/SmartRlMessage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-    <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -40,204 +32,63 @@
             android:text="私信"
             android:textSize="26dp"
             android:textColor="#FFFFFF"/>
-    </RelativeLayout>
+    </FrameLayout>
 
-    <RelativeLayout
-        android:id="@+id/ln_user"
+    <LinearLayout
+        android:id="@+id/sys_messsage"
         android:layout_width="600dp"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/box_color1">
-
-        <ImageView
-            android:id="@+id/Img_01"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:src="@drawable/bigmessage"/>
-
-
-
-        <TextView
-            android:id="@+id/TV_01"
-            android:layout_toRightOf="@+id/Img_01"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:text="我的通知"
-            android:textSize="18dp"
-            android:textColor="#000000"
-            android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_below="@+id/TV_01"
-            android:layout_alignLeft="@+id/TV_01"
-            android:layout_marginTop="2dp"
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:text="官方通知"
-            android:textSize="14dp"
-            android:textColor="#888888"/>
-
-
-
-        <ImageView
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_width="40dp"
-            android:layout_height="30dp"
-            android:src="@drawable/home_publish_arrows_right"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/ln_a"
-        android:layout_width="600dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/box_color1">
-
-        <ImageView
-            android:id="@+id/Img_02"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:src="@drawable/people1"/>
-
-
-
-        <TextView
-            android:id="@+id/TV_02"
-            android:layout_toRightOf="@+id/Img_02"
-            android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:text="小红"
-            android:textSize="18dp"
-            android:textColor="#000000"
-            android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_below="@+id/TV_02"
-            android:layout_alignLeft="@+id/TV_02"
-            android:layout_marginTop="2dp"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:text="你的单子我接了"
-            android:textSize="14dp"
-            android:textColor="#888888"/>
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:text="12:21"
-            android:textSize="12dp"
-            android:textColor="#888888" />
-
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/ln_b"
-        android:layout_width="600dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/box_color1">
-
-        <ImageView
-            android:id="@+id/Img_03"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:src="@drawable/people2"/>
-
-
-
-        <TextView
-            android:id="@+id/TV_03"
-            android:layout_toRightOf="@+id/Img_03"
-            android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:text="小明"
-            android:textSize="18dp"
-            android:textColor="#000000"
-            android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_below="@+id/TV_03"
-            android:layout_alignLeft="@+id/TV_03"
-            android:layout_marginTop="2dp"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:text="你的单子我接了"
-            android:textSize="14dp"
-            android:textColor="#888888"/>
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:text="12:21"
-            android:textSize="12dp"
-            android:textColor="#888888" />
-
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/ln_c"
-        android:layout_width="600dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/box_color1">
-
-        <ImageView
-            android:id="@+id/Img_04"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_width="70dp"
-            android:layout_height="40dp"
-            android:src="@drawable/people3"/>
-
-
-
-        <TextView
-            android:id="@+id/TV_04"
-            android:layout_toRightOf="@+id/Img_04"
-            android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:text="小黑"
-            android:textSize="18dp"
-            android:textColor="#000000"
-            android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_below="@+id/TV_04"
-            android:layout_alignLeft="@+id/TV_04"
-            android:layout_marginTop="2dp"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:text="你的单子我接了"
-            android:textSize="14dp"
-            android:textColor="#888888"/>
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:text="12:21"
-            android:textSize="12dp"
-            android:textColor="#888888" />
-
-
-    </RelativeLayout>
+            android:layout_height="80dp"
+            android:layout_gravity="center">
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:src="@drawable/bigmessage"/>
         </LinearLayout>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="22dp"
+                android:text="我的通知"
+                android:textSize="18dp"
+                android:textColor="#000000"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:layout_marginTop="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:text="官方通知"
+                android:textSize="14dp"
+                android:textColor="#888888"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/btn_enter"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:src="@drawable/home_publish_arrows_right"
+                android:clickable="true"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sys_messsage"/>
+    <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
+
 
 </RelativeLayout>

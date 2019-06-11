@@ -46,6 +46,17 @@
         <activity android:name=".Talk.MessageTalkActivity"
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Talk.MessageUserActivity"/>
+        <receiver android:name="com.w.school_herper_front.HomePage.fragment.MessageFragment$GetListReceiver" >
+            <intent-filter>
+                <action android:name="com.w.school_herper_front.HomePage.fragment.MessageFragment" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.w.school_herper_front.Talk.MessageTalkActivity$RecvMsgReceiver" >
+            <intent-filter>
+                <action android:name="com.w.school_herper_front.Talk.MessageTalkActivity" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

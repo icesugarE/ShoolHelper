@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.w.school_herper_front.HomePage.HomeActivity;
+import com.w.school_herper_front.thread.ClientThread;
 
 public class MainActivity extends AppCompatActivity {
     private EditText phone;
@@ -71,21 +72,26 @@ public class MainActivity extends AppCompatActivity {
                 String phone1 = phone.getText().toString();
                 String password1 = password.getText().toString();
 
-//                /*测试用跳转到HomeActivity
-//                 * 随时删除
-//                 * 开发人：尚一飞
-//                 * */
+                /*测试用跳转到HomeActivity
+                 * 随时删除
+                 * 开发人：尚一飞
+                 * */
 //                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
 //                startActivity(intent);
-//                /*/测试用*/
+
 
                 //打包在user里
                 if(phone1.equals("") || password1.equals("")){
                     Toast.makeText(MainActivity.this, "登录信息不能为空", Toast.LENGTH_LONG).show();
                 }else{
                     User user1 = new User(phone1,password1);
+
                     new SendDatesToServer(handler).SendDatasToServer(user1);
+
+
                 }
+
+
             }
         });
 
