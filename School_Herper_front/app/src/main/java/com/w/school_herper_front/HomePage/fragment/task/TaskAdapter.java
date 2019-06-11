@@ -53,7 +53,9 @@ public class TaskAdapter extends BaseAdapter {
         TextView name = convertView.findViewById(R.id.name);
         name.setText(boards.get(position).getName());
         TextView endTime = convertView.findViewById(R.id.endtime);
-        endTime.setText(boards.get(position).getEndTime());
+        String e = boards.get(position).getEndTime().substring(0, 4)+"-"+boards.get(position).getEndTime().substring(5,7)+"-"+boards.get(position).getEndTime().substring(8,10);
+        endTime.setText(e);
+//        endTime.setText(boards.get(position).getEndTime());
         TextView tName = convertView.findViewById(R.id.Tname);
         tName.setText(boards.get(position).getTitle());
         TextView condition = convertView.findViewById(R.id.condition);
