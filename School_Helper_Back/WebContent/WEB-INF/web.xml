@@ -14,7 +14,9 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
+	<listener>
+		<listener-class>com.steadyjack.server.listener.ChatServerListener</listener-class>
+	</listener>
 	<!-- springmvc的配置 -->
 	<servlet>
 		<servlet-name>dispatcherServlet</servlet-name>
