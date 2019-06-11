@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -53,6 +55,9 @@ public class BoardFragment extends Fragment {
     private String url = new ServerUrl().getUrl();
     private SmartRefreshLayout smartRefreshLayout;
 
+    private EditText editText;
+    private ImageView imageView;
+
     public BoardFragment() {
         // Required empty public constructor
     }
@@ -67,6 +72,17 @@ public class BoardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_board,container,false);
+
+        imageView = view.findViewById(R.id.find_it);
+        editText = view.findViewById(R.id.find_message);
+
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boards.clear();
+                new BoardAsyncTask().execute();
+            }
+        });
         /*
         * 悬浮按钮绑定点击事件
         * */
@@ -150,11 +166,19 @@ public class BoardFragment extends Fragment {
      */
     class BoardAsyncTask extends AsyncTask<Void,Void,List<board>>{
 
+
         @Override
         protected List<board> doInBackground(Void... voids) {
-
+            String str = editText.getText().toString();
             final StringBuffer stringBuffer = new StringBuffer(url);
-            stringBuffer.append("/School_Helper_Back/boraditem");
+            if(str.equals("")){
+                stringBuffer.append("/School_Helper_Back/boraditem");
+            }else{
+                stringBuffer.append("/School_Helper_Back/search");//后台筛选数据的
+                stringBuffer.append("?");
+                stringBuffer.append("word=");
+                stringBuffer.append(str);
+            }
             HttpURLConnection conn = null;
             try {
                 conn = (HttpURLConnection) new URL(stringBuffer.toString()).openConnection();
